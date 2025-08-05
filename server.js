@@ -8,7 +8,10 @@ dotenv.config();
 
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ['https://smart-study-frontend-brown.vercel.app/'],
+  credentials: true,
+}));
 app.use(express.json());
 console.log("✅ API KEY:", process.env.OPENAI_API_KEY);
 
