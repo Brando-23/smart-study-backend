@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin: ['https://smart-study-frontend-brown.vercel.app/'],
+  origin: ['https://smart-study-frontend-brown.vercel.app', 'http://localhost:3000'],
   credentials: true,
 }));
 app.use(express.json());
