@@ -27,7 +27,7 @@ const taskSchema=new mongoose.Schema({
     priority: String
 })
 const Task = mongoose.model('Task', taskSchema);
-app.post('/api/tasks',async(req,res)=>{
+app.post(`${process.env.REACT_APP_API_URL}/api/tasks`,async(req,res)=>{
     try{
         const tasks=new Task({
             task:req.body.taskName,
@@ -43,7 +43,7 @@ app.post('/api/tasks',async(req,res)=>{
         console.log('Error adding task:', error);
     }
 })
-app.get('/api/tasks',async(req,res)=>{
+app.get(`${process.env.REACT_APP_API_URL}/api/tasks`,async(req,res)=>{
     try{
         const tasks = await Task.find();
         res.json(tasks);
@@ -62,7 +62,7 @@ const taskcompletedSchema =new mongoose.Schema({
   priority:String
 });
 const TaskCompleted = mongoose.model('TaskCompleted', taskcompletedSchema);
-app.delete('/api/tasks/:id',async(req,res)=>{
+app.delete(`${process.env.REACT_APP_API_URL}/api/tasks/:id`,async(req,res)=>{
     try{
         const taskId = req.params.id;
         const deltask=await Task.findByIdAndDelete(taskId);
@@ -88,7 +88,7 @@ app.delete('/api/tasks/:id',async(req,res)=>{
 })
 
 
-app.post('/api/openai', async (req, res) => {
+app.post(`${process.env.REACT_APP_API_URL}/api/openai`, async (req, res) => {
   const userMessage = req.body.message;
   try {
     const response = await axios.post(
@@ -137,7 +137,7 @@ const reviewSchema = new mongoose.Schema({
     date: Date,
     });
 const Review = mongoose.model('Review', reviewSchema);
-app.post('/api/review', async (req, res) => {    
+app.post(`${process.env.REACT_APP_API_URL}/api/review`, async (req, res) => {    
     try{
         const review = new Review({
             topic: req.body.topic,
@@ -154,7 +154,7 @@ app.post('/api/review', async (req, res) => {
     }
 });
 
-app.get('/api/review', async (req, res) => {
+app.get(`${process.env.REACT_APP_API_URL}/api/review`, async (req, res) => {
     try {
         const reviews = await Review.find();
         res.json(reviews);
@@ -171,7 +171,7 @@ const userSchema = new mongoose.Schema({
 });
 const User = mongoose.model('User', userSchema);
 
-app.post('/api/signup', async (req, res) => {
+app.post(`${process.env.REACT_APP_API_URL}/api/signup`, async (req, res) => {
     try{
         const signupUser = new User({
             name: req.body.name,
@@ -193,7 +193,7 @@ const loginSchema = new mongoose.Schema({
 const Login = mongoose.model('Login', loginSchema);
 
 // POST /api/login
-app.post('/api/login', async (req, res) => {
+app.post(`${process.env.REACT_APP_API_URL}/api/login`, async (req, res) => {
   try {
     // const { email, password } = req.body;
 
@@ -214,7 +214,7 @@ app.post('/api/login', async (req, res) => {
 
 //Dashboard route
 // Task model assumed as Task
-app.get('/api/tasks/count', async (req, res) => {
+app.get(`${process.env.REACT_APP_API_URL}/api/tasks/count`, async (req, res) => {
   try {
     const count = await Task.countDocuments();
     res.json({ count });
@@ -222,7 +222,7 @@ app.get('/api/tasks/count', async (req, res) => {
     res.status(500).json({ error: 'Error fetching total tasks' });
   }
 });
-app.get('/api/review/count', async (req, res) => {
+app.get(`${process.env.REACT_APP_API_URL}/api/review/count`, async (req, res) => {
   try {
     const count = await Review.countDocuments();
     res.json({ count });
@@ -231,7 +231,7 @@ app.get('/api/review/count', async (req, res) => {
   }
 });
 // TaskCompleted model assumed as TaskCompleted
-app.get('/api/taskcompleted/count',async(req,res)=>{
+app.get(`${process.env.REACT_APP_API_URL}/api/taskcompleted/count`,async(req,res)=>{
   try{
     const count=await TaskCompleted.countDocuments();
     res.json({count});
