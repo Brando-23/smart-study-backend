@@ -13,10 +13,10 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.json());
-console.log("✅ API KEY:", process.env.OPENAI_API_KEY);
+console.log("✅ API KEY:", process.env.OPENROUTER_API_KEY);
 
 
-mongoose.connect('mongodb+srv://newuser:smartstudy@cluster0.7pvhq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect('mongodb+srv://newuser:VRzO1Amg2a94qf68@cluster0.7pvhq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 .then(()=>{
     console.log('Connected to MongoDB');
 })
